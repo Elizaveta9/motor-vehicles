@@ -1,11 +1,35 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Serving Web Content</title>
+    <title>Добавление нового транспортного средства</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-
+<h1>Добавление нового транспортного средства</h1>
+<form th:action="@{/vehicles/add}" th:method="POST" th:object="${vehicle}">
+    <label for="brand">Марка: </label>
+    <input type="text" th:field="*{brand}" id="brand">
+    <br>
+    <label for="modelVehicle">Модель: </label>
+    <input type="text" th:field="*{model}" id="modelVehicle">
+    <br>
+    <label for="category">Категория: </label>
+    <input type="text" th:field="*{category}" id="category">
+    <br>
+    <label for="licenseNumber">Государственный номер: </label>
+    <input type="text" th:field="*{licenseNumber}" id="licenseNumber">
+    <br>
+    <label for="type">Тип: </label>
+    <input type="text" th:field="*{type}" id="type">
+    <br>
+    <label for="releaseYear">Год выпуска: </label>
+    <input type="number" th:field="*{releaseYear}" id="releaseYear">
+    <br>
+    <label for="hasTrailer">Прицеп имеется </label>
+    <input type="checkbox" th:field="*{hasTrailer}" id="hasTrailer">
+    <br>
+    <button type="submit">Добавить</button>
+</form>
 <a href="/vehicles"> Назад </a>
 </body>
 </html>
