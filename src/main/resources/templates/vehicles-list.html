@@ -29,6 +29,7 @@
             <span th:if="${vehicle.hasTrailer}" th:text="'имеется'">Наличие прицепа</span>
             <span th:unless="${vehicle.hasTrailer}" th:text="'не имеется'">Наличие прицепа</span>
         </td>
+        <td><a th:href="@{/vehicles/{id}/edit(id = ${vehicle.id})}">Изменить</a></td>
     </tr>
     </tbody>
 </table>
