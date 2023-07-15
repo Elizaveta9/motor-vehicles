@@ -35,7 +35,7 @@
     <input type="checkbox" th:field="*{hasTrailer}" id="hasTrailer">
     <div style="color: red" th:if="${#fields.hasErrors('hasTrailer')}" th:errors="*{hasTrailer}"></div>
     <br>
-    <input type="hidden" th:field="*{id}" id="hasTrailer">
+    <input type="hidden" th:field="*{id}">
     <button type="submit">Сохранить изменения</button>
 </form>
 <a href="/vehicles"> Назад </a>
