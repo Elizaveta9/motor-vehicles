@@ -9,24 +9,31 @@
 <form th:action="@{/vehicles/add}" th:method="POST" th:object="${vehicle}">
     <label for="brand">Марка: </label>
     <input type="text" th:field="*{brand}" id="brand">
+    <div style="color: red" th:if="${#fields.hasErrors('brand')}" th:errors="*{brand}"></div>
     <br>
     <label for="modelVehicle">Модель: </label>
     <input type="text" th:field="*{model}" id="modelVehicle">
+    <div style="color: red" th:if="${#fields.hasErrors('model')}" th:errors="*{model}"></div>
     <br>
     <label for="category">Категория: </label>
     <input type="text" th:field="*{category}" id="category">
+    <div style="color: red" th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></div>
     <br>
     <label for="licenseNumber">Государственный номер: </label>
     <input type="text" th:field="*{licenseNumber}" id="licenseNumber">
+    <div style="color: red" th:if="${#fields.hasErrors('licenseNumber')}" th:errors="*{licenseNumber}"></div>
     <br>
     <label for="type">Тип: </label>
     <input type="text" th:field="*{type}" id="type">
+    <div style="color: red" th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></div>
     <br>
     <label for="releaseYear">Год выпуска: </label>
     <input type="number" th:field="*{releaseYear}" id="releaseYear">
+    <div style="color: red" th:if="${#fields.hasErrors('releaseYear')}" th:errors="*{releaseYear}"></div>
     <br>
     <label for="hasTrailer">Прицеп имеется </label>
     <input type="checkbox" th:field="*{hasTrailer}" id="hasTrailer">
+    <div style="color: red" th:if="${#fields.hasErrors('hasTrailer')}" th:errors="*{hasTrailer}"></div>
     <br>
     <button type="submit">Добавить</button>
 </form>

@@ -25,7 +25,10 @@
         <td><span th:text="${vehicle.licenseNumber}">Государсвенный номер</span></td>
         <td><span th:text="${vehicle.type}">Тип</span></td>
         <td><span th:text="${vehicle.releaseYear}">Год выпуска</span></td>
-        <td><span th:text="${vehicle.hasTrailer}">Наличие прицепа</span></td>
+        <td>
+            <span th:if="${vehicle.hasTrailer}" th:text="'имеется'">Наличие прицепа</span>
+            <span th:unless="${vehicle.hasTrailer}" th:text="'не имеется'">Наличие прицепа</span>
+        </td>
     </tr>
     </tbody>
 </table>
