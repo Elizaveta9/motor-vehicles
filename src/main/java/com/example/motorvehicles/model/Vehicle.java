@@ -24,11 +24,11 @@ public class Vehicle {
     private String model;
     @NotBlank(message = "Впишите категорию")
     private String category;
-    @NotBlank(message = "Впишите государсвенный номер")
+    @NotBlank(message = "Впишите государственный номер")
     @Pattern(regexp = "[а-яА-Я]{2}\\d\\d\\d[а-яА-Я]", message = "Государственный номер записан некорректно")
     @Column(unique = true)
     private String licenseNumber;
-    @NotBlank(message = "Впишите тип транспортного средства")
+    @NotBlank(message = "Впишите тип ТС")
     private String type;
     @NotNull(message = "Впишите год выпуска")
     private Integer releaseYear;
