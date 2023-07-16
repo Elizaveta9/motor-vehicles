@@ -25,7 +25,7 @@ public class Vehicle {
     @NotBlank(message = "Впишите категорию")
     private String category;
     @NotBlank(message = "Впишите государственный номер")
-    @Pattern(regexp = "[а-яА-Я]{2}\\d\\d\\d[а-яА-Я]", message = "Государственный номер записан некорректно")
+    @Pattern(regexp = "[а-яА-Я]\\d\\d\\d[а-яА-Я]{2}", message = "Государственный номер записан некорректно")
     @Column(unique = true)
     private String licenseNumber;
     @NotBlank(message = "Впишите тип ТС")
