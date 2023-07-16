@@ -9,7 +9,5 @@ import java.util.List;
 
 @Repository
 public interface VehicleRepository extends CrudRepository<Vehicle, Long> {
-    List<Vehicle> findByBrand(String brand);
-
     List<Vehicle> findAll(Specification<Vehicle> specification);
 }

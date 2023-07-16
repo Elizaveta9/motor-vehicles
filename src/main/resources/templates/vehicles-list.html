@@ -5,6 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
+<h1 align="center">Справочник автостранспорной техники</h1>
 <table border="1" align="center">
     <thead>
     <tr>
@@ -19,15 +20,15 @@
     </thead>
     <tbody>
     <tr th:each="vehicle : ${vehicleList}">
-        <td><span th:text="${vehicle.brand}">Марка</span></td>
-        <td><span th:text="${vehicle.model}">Модель</span></td>
-        <td><span th:text="${vehicle.category}">Категория</span></td>
-        <td><span th:text="${vehicle.licenseNumber}">Государсвенный номер</span></td>
-        <td><span th:text="${vehicle.type}">Тип</span></td>
-        <td><span th:text="${vehicle.releaseYear}">Год выпуска</span></td>
+        <td><span th:text="${vehicle.brand}"></span></td>
+        <td><span th:text="${vehicle.model}"></span></td>
+        <td><span th:text="${vehicle.category}"></span></td>
+        <td><span th:text="${vehicle.licenseNumber}"></span></td>
+        <td><span th:text="${vehicle.type}"></span></td>
+        <td><span th:text="${vehicle.releaseYear}"></span></td>
         <td>
-            <span th:if="${vehicle.hasTrailer}" th:text="'имеется'">Наличие прицепа</span>
-            <span th:unless="${vehicle.hasTrailer}" th:text="'не имеется'">Наличие прицепа</span>
+            <span th:if="${vehicle.hasTrailer}" th:text="'имеется'"></span>
+            <span th:unless="${vehicle.hasTrailer}" th:text="'не имеется'"></span>
         </td>
         <td><a th:href="@{/vehicles/{id}/edit(id = ${vehicle.id})}">Изменить</a></td>
     </tr>
