@@ -50,11 +50,17 @@ public class VehicleController {
     }
 
     @PostMapping("/add")
-    public String addVehiclePost(@ModelAttribute("vehicle") @Valid Vehicle vehicle, BindingResult bindingResult) {
+    public String addVehiclePost(Model model, @ModelAttribute("vehicle") @Valid Vehicle vehicle, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "vehicle-add";
         }
-        repository.save(vehicle);
+        try {
+            repository.save(vehicle);
+        } catch (Exception e){
+            model.addAttribute("uniqueLicenseNumberError", true);
+            return "vehicle-add";
+        }
+
         return "redirect:/vehicles";
     }
 
@@ -65,11 +71,16 @@ public class VehicleController {
     }
 
     @PostMapping
-    public String editVehiclePatch(@ModelAttribute("vehicleToEdit") @Valid Vehicle vehicle, BindingResult bindingResult) {
+    public String editVehiclePatch(Model model, @ModelAttribute("vehicleToEdit") @Valid Vehicle vehicle, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "vehicle-edit";
         }
-        repository.save(vehicle);
+        try {
+            repository.save(vehicle);
+        } catch (Exception e){
+            model.addAttribute("uniqueLicenseNumberError", true);
+            return "vehicle-edit";
+        }
         return "redirect:/vehicles";
     }
 }

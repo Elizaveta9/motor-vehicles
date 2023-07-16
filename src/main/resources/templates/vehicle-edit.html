@@ -22,6 +22,7 @@
     <label for="licenseNumber">Государственный номер: </label>
     <input type="text" th:field="*{licenseNumber}" id="licenseNumber">
     <div style="color: red" th:if="${#fields.hasErrors('licenseNumber')}" th:errors="*{licenseNumber}"></div>
+    <div style="color: red" th:if="${uniqueLicenseNumberError}">Такой номер уже зарегистрирован</div>
     <br>
     <label for="type">Тип ТС: </label>
     <select th:field="*{type}" id="type">

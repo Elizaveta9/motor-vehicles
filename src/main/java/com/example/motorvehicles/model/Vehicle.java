@@ -1,11 +1,13 @@
 package com.example.motorvehicles.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.validation.constraints.*;
-import lombok.*;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Getter
@@ -24,6 +26,7 @@ public class Vehicle {
     private String category;
     @NotBlank(message = "Впишите государсвенный номер")
     @Pattern(regexp = "[а-яА-Я]{2}\\d\\d\\d[а-яА-Я]", message = "Государственный номер записан некорректно")
+    @Column(unique = true)
     private String licenseNumber;
     @NotBlank(message = "Впишите тип транспортного средства")
     private String type;
