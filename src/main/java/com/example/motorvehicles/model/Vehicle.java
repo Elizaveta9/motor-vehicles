@@ -1,6 +1,7 @@
 package com.example.motorvehicles.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -31,6 +32,7 @@ public class Vehicle {
     @NotBlank(message = "Впишите тип ТС")
     private String type;
     @NotNull(message = "Впишите год выпуска")
+    @Min(value = 0, message = "Год не может быть отрицательным")
     private Integer releaseYear;
     private Boolean hasTrailer;
 }
