@@ -33,6 +33,24 @@
     </tr>
     </tbody>
 </table>
+<form th:method="GET" th:action="@{/vehicles}">
+    <label for="brand">Марка: </label>
+    <input type="text" id="brand" name="brand">
+    <br>
+    <label for="model">Модель: </label>
+    <input type="text" id="model" name="model">
+    <br>
+    <label for="category">Категория: </label>
+    <input type="text" id="category" name="category">
+    <br>
+    <label for="licenseNumber">Государсвенный номер: </label>
+    <input type="text" id="licenseNumber" name="licenseNumber">
+    <br>
+    <label for="releaseYear">Год выпуска: </label>
+    <input type="number" id="releaseYear" name="releaseYear">
+    <br>
+    <button type="submit">Поиск</button>
+</form>
 <a href="/vehicles/add"> Добавить транспортное средство </a>
 </body>
 </html>
