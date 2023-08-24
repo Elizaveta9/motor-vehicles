@@ -27,7 +27,7 @@ public interface VehicleRepository extends CrudRepository<Vehicle, Long> {
     }
 
     static Specification<Vehicle> hasReleaseYear(String releaseYear) {
-        if (releaseYear.equals("")) {
+        if (releaseYear == null || releaseYear.equals("")) {
             return null;
         }
         return ((root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("releaseYear"), releaseYear));
