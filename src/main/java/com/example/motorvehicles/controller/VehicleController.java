@@ -2,18 +2,14 @@ package com.example.motorvehicles.controller;
 
 import com.example.motorvehicles.model.Vehicle;
 import com.example.motorvehicles.repository.VehicleRepository;
-import com.example.motorvehicles.repository.VehicleSpecification;
-import com.example.motorvehicles.service.SearchParameter;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.Map;
+import static com.example.motorvehicles.repository.VehicleRepository.*;
 
 @Controller
 @RequestMapping("/vehicles")
@@ -29,14 +25,13 @@ public class VehicleController {
                                @RequestParam(defaultValue = "") String licenseNumber,
                                @RequestParam(defaultValue = "") String releaseYear) {
 
-        VehicleSpecification brandSpec = new VehicleSpecification(new SearchParameter("brand", brand));
-        VehicleSpecification modelSpec = new VehicleSpecification(new SearchParameter("model", model));
-        VehicleSpecification categorySpec = new VehicleSpecification(new SearchParameter("category", category));
-        VehicleSpecification licenseNumberSpec = new VehicleSpecification(new SearchParameter("licenseNumber", licenseNumber));
-        VehicleSpecification releaseYearSpec = new VehicleSpecification(new SearchParameter("releaseYear", releaseYear));
-
         Iterable<Vehicle> vehicles;
-        vehicles = repository.findAll(Specification.where(brandSpec).and(modelSpec).and(categorySpec).and(licenseNumberSpec).and(releaseYearSpec));
+        vehicles = repository.findAll(
+                hasBrand(brand)
+                        .and(hasModel(model))
+                        .and(hasCategory(category)
+                                .and(hasLicenseNumber(licenseNumber)
+                                        .and(hasReleaseYear(releaseYear)))));
         modelTH.addAttribute("vehicleList", vehicles);
         return "vehicles-list";
     }
