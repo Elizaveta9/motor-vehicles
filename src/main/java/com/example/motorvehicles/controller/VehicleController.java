@@ -3,8 +3,10 @@ package com.example.motorvehicles.controller;
 import com.example.motorvehicles.model.Vehicle;
 import com.example.motorvehicles.repository.VehicleRepository;
 import com.example.motorvehicles.repository.VehicleSpecification;
+import com.example.motorvehicles.service.SearchParameter;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,19 +28,15 @@ public class VehicleController {
                                @RequestParam(defaultValue = "") String category,
                                @RequestParam(defaultValue = "") String licenseNumber,
                                @RequestParam(defaultValue = "") String releaseYear) {
-        Map<String, String> searchParameters = new HashMap<>();
-        if (!brand.isEmpty()) searchParameters.put("brand", brand);
-        if (!model.isEmpty()) searchParameters.put("model", model);
-        if (!category.isEmpty()) searchParameters.put("category", category);
-        if (!licenseNumber.isEmpty()) searchParameters.put("licenseNumber", licenseNumber);
-        if (!releaseYear.isEmpty()) searchParameters.put("releaseYear", releaseYear);
+
+        VehicleSpecification brandSpec = new VehicleSpecification(new SearchParameter("brand", brand));
+        VehicleSpecification modelSpec = new VehicleSpecification(new SearchParameter("model", model));
+        VehicleSpecification categorySpec = new VehicleSpecification(new SearchParameter("category", category));
+        VehicleSpecification licenseNumberSpec = new VehicleSpecification(new SearchParameter("licenseNumber", licenseNumber));
+        VehicleSpecification releaseYearSpec = new VehicleSpecification(new SearchParameter("releaseYear", releaseYear));
 
         Iterable<Vehicle> vehicles;
-        if (!searchParameters.isEmpty()) {
-            vehicles = repository.findAll(new VehicleSpecification().getSpecification(searchParameters));
-        } else {
-            vehicles = repository.findAll();
-        }
+        vehicles = repository.findAll(Specification.where(brandSpec).and(modelSpec).and(categorySpec).and(licenseNumberSpec).and(releaseYearSpec));
         modelTH.addAttribute("vehicleList", vehicles);
         return "vehicles-list";
     }
